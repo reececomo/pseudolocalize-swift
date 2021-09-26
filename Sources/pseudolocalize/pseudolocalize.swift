@@ -2,24 +2,24 @@
  Turns a string like "Pseudolocalized" into "[\~\~Psëêùùdöölóçåålîîzëêd\~\~]".
  */
 public func pseudolocalize(
-  _ source: String,
+  _ text: String,
   accents: Bool = true,
   vowelExpansions: Int = 2,
   idealExpansionRate: Double = 2.0,
   encapsulated: Bool = true
 ) -> String {
   // Seed number used to generate deterministic but "random looking" accents.
-  let sourceSeed: Int = source.count
+  let textSeed: Int = text.count
   var result: String = ""
 
-  for (charOffset, char) in source.enumerated() {
+  for (charOffset, char) in text.enumerated() {
     if "AEIOUYaeiouy".contains(char) {
       // Vowel
-      result += "\(accents ? accent(char, sourceSeed + charOffset) : char)"
+      result += "\(accents ? accent(char, textSeed + charOffset) : char)"
 
       // Vowel expansions
       for expansionOffset in 0 ..< vowelExpansions {
-        let charSeed: Int = sourceSeed + charOffset + expansionOffset + 1
+        let charSeed: Int = textSeed + charOffset + expansionOffset + 1
         let lowercaseChar: String.Element = char.lowercased().first!
 
         result += "\(accents ? accent(lowercaseChar, charSeed) : lowercaseChar)"
@@ -31,7 +31,7 @@ public func pseudolocalize(
   }
 
   // Expansion/padding
-  let idealLength = Int((Double(source.count) * idealExpansionRate).rounded())
+  let idealLength = Int((Double(text.count) * idealExpansionRate).rounded())
 
   while result.count < idealLength {
     result = "~\(result)~"

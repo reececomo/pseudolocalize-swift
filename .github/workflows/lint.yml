@@ -1,9 +1,11 @@
 name: lint
+
 on:
   push:
     paths: ['*.swift']
     branches: [ main ]
   pull_request:
+    paths: ['*.swift']
     branches: [ main ]
 
 jobs:
