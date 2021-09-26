@@ -1,7 +1,7 @@
 @testable import pseudolocalize
 import XCTest
 
-final class PseudolocalizeTests: XCTestCase {
+final class UnitTests: XCTestCase {
 
   typealias BasicUsage = (
     input: String,

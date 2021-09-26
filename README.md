@@ -1,5 +1,5 @@
 <h1 align="center">Pseudolocalize</h1>
-<p align="center">Prepare your iOS/MacOS App UI to adapt and respond to translations, and find localization bugs!<br /></p>
+<p align="center">Build your App UI to adapt and respond to translations, and find localization bugs!<br /></p>
 
 <p align="center">
   <a href="https://github.com/reececomo/pseudolocalize-swift/actions/workflows/lint.yml"><img src="https://github.com/reececomo/pseudolocalize-swift/actions/workflows/lint.yml/badge.svg?branch=main" alt="Lint"/></a>
@@ -14,24 +14,26 @@
 
 ```swift
 pseudolocalize("Hello")
-  // -> "[~Hêëèllóøõ~]"
+  // "[~Hêëèllóøõ~]"
 ```
 
 ### Using in an app
 
-Here's an example of how you might pseudolocalize a simple iOS App:
+Here is how you might override the built-in `NSLocalizedString(_:comment:)` handler in a simple iOS App:
 
 ```swift
+#if DEBUG
 import Foundation
 import pseudolocalize
 
-#if DEBUG
 func NSLocalizedString(_ key: String, comment: String) -> String {
   let value = NSLocalizedString(key, tableName: nil, bundle: Bundle.main, value: "", comment: "")
   return pseudolocalize(value)
 }
 #endif
 ```
+
+For apps with more complex abstraction or multiple strings files, you may want to generate/preprocess your `en.lproj/*.strings` files and run `pseudolocalize()` as a Build Phase.
 
 ### Advanced usage
 

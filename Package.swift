@@ -1,5 +1,4 @@
 // swift-tools-version:5.0
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
@@ -8,15 +7,18 @@ let package = Package(
   products: [
     .library(
       name: "pseudolocalize",
-      targets: ["pseudolocalize"])
+      targets: ["pseudolocalize"]
+    )
   ],
-  dependencies: [],
   targets: [
     .target(
       name: "pseudolocalize",
-      dependencies: []),
+      path: "Sources"
+    ),
     .testTarget(
-      name: "pseudolocalizeTests",
-      dependencies: ["pseudolocalize"])
+      name: "UnitTests",
+      dependencies: ["pseudolocalize"],
+      path: "Tests"
+    )
   ]
 )
