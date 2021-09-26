@@ -1,20 +1,13 @@
-name: Swift
+name: test
 
 on:
   push:
+    paths: ['*.swift']
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  lint:
-    name: "🧹 Lint"
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: 🧹 Lint
-      uses: norio-nomura/action-swiftlint@3.2.1
-  
   test:
     name: "🧪 Test"
     runs-on: macos-latest

@@ -1,0 +1,16 @@
+name: lint
+on:
+  push:
+    paths: ['*.swift']
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    name: "🧹 Lint"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: 🧹 Swiftlint
+      uses: norio-nomura/action-swiftlint@3.2.1
